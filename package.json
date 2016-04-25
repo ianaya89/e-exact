@@ -1,0 +1,23 @@
+{
+  "name": "e-xact-trainning",
+  "version": "1.0.0",
+  "description": "e-xact trainning app",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianaya89/e-exact.git"
+  },
+  "keywords": [
+    "e-xact",
+    "trainning"
+  ],
+  "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ianaya89/e-exact/issues"
+  },
+  "homepage": "https://github.com/ianaya89/e-exact#readme"
+}
