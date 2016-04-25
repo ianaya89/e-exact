@@ -1,7 +1,7 @@
 import config from './config/config';
 
 import express from 'express';
-//import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -13,7 +13,7 @@ const app = express();
 
 //require('./libraries/promisify-all')(['mongoose', 'jsonwebtoken', 'bcrypt']);
 
-//mongoose.connect(config.MONGODB_URL);
+mongoose.connect(config.MONGODB_URL);
 
 //app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
