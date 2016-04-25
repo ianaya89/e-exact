@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
 import bcrypt from 'bcrypt';
+import jsonwebtoken from 'jsonwebtoken';
 
 import { promisifyAll } from 'bluebird';
 
@@ -16,6 +17,7 @@ const app = express();
 
 promisifyAll(mongoose);
 promisifyAll(bcrypt);
+promisifyAll(jsonwebtoken);
 
 mongoose.connect(config.MONGODB_URL);
 

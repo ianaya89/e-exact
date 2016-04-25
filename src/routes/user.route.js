@@ -1,9 +1,10 @@
 import express from 'express';
 import userController from '../controllers/user.controller'
+import auth from '../middlewares/auth.middleware'
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res, next) => {
   res.json('Hello world!');
 });
 
@@ -25,7 +26,7 @@ router.post('/authenticate', (req, res, next) => {
   userController.authenticate(username, password)
     .then(token => {
       console.log(token)
-      res.json({
+      res.status(200).json({
         token: token
       });
     })
