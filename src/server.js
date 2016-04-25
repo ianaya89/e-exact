@@ -2,16 +2,20 @@ import config from './config/config';
 
 import express from 'express';
 import mongoose from 'mongoose';
-
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
-import routes from './routes/index';
+import bcrypt from 'bcrypt';
+
+import { promisifyAll } from 'bluebird';
+
+import userRoute from './routes/user.route';
 
 const port = config.PORT;
 const app = express();
 
-//require('./libraries/promisify-all')(['mongoose', 'jsonwebtoken', 'bcrypt']);
+promisifyAll(mongoose);
+promisifyAll(bcrypt);
 
 mongoose.connect(config.MONGODB_URL);
 
@@ -20,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(morgan('tiny'));
 
-app.use('/', routes);
+app.use('/', userRoute);
 
 app.listen(port, () => console.log(`Listenning on port ${port}`) );
 

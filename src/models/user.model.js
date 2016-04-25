@@ -1,4 +1,4 @@
-mport { genSaltAsync, hashAsync } from 'bcrypt';
+import { genSaltAsync, hashAsync } from 'bcrypt';
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
@@ -16,8 +16,8 @@ const UserSchema = new Schema({
   }
 });
 
-UserSchema.pre('save', next => {
-  if (!this.isModified('password')) { return next(); }
+UserSchema.pre('save', function(next) {
+  if (this && !this.isModified('password')) { return next(); }
 
   return genSaltAsync(SALT_WORK_FACTOR)
     .then(salt => hashAsync(this.password, salt))
