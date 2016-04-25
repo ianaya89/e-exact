@@ -1,4 +1,6 @@
+import { sign } from 'jsonwebtoken';
 import config from '../config/config';
+
 import User from '../models/user.model';
 
 class UserController {
@@ -26,14 +28,18 @@ class UserController {
           return Promise.reject('Authentication failed. Username and password do not match.');
         }
         
-        return user.comparePassword(password);
-      })
-      .then(isValidPassword => {
-        if (!isValidPassword) {
-          return Promise.reject('Authentication failed. Username and password do not match.');
-        }
+        return user.comparePassword(password)
+          .then(isValidPassword => {
+            if (!isValidPassword) {
+              return Promise.reject('Authentication failed. Username and password do not match.');
+            }
 
-        return Promise.resolve('OK');
+            let token = sign(user, config.AUTH.KEY, {
+              expiresIn: config.AUTH.EXPIRATION,
+            });
+
+            return Promise.resolve(token);
+          });
       });
   }
 }

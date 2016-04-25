@@ -12,7 +12,7 @@ router.post('/create', (req, res, next) => {
   var password = req.body.password;
 
   userController.create(username, password)
-    .then((user) => {
+    .then(user => {
       res.sendStatus(200);
     })
     .catch(next);
@@ -23,8 +23,11 @@ router.post('/authenticate', (req, res, next) => {
   var password = req.body.password;
 
   userController.authenticate(username, password)
-    .then((user) => {
-      res.json(user);
+    .then(token => {
+      console.log(token)
+      res.json({
+        token: token
+      });
     })
     .catch(next);
 });
