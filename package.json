@@ -1,7 +1,7 @@
 {
   "name": "e-xact-trainning",
   "version": "1.0.0",
-  "description": "e-xact trainning app",
+  "description": "e-xact trainning REST API",
   "main": "server.js",
   "scripts": {
     "test": "mocha test/"
