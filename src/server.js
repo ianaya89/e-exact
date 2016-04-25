@@ -10,6 +10,7 @@ import jsonwebtoken from 'jsonwebtoken';
 
 import { promisifyAll } from 'bluebird';
 
+import middleware from './middlewares/middleware'
 import userRoute from './routes/user.route';
 
 const port = config.PORT;
@@ -21,11 +22,7 @@ promisifyAll(jsonwebtoken);
 
 mongoose.connect(config.MONGODB_URL);
 
-//app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(morgan('tiny'));
-
+middleware(app);
 app.use('/', userRoute);
 
 app.listen(port, () => console.log(`Listenning on port ${port}`) );
