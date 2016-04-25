@@ -13,8 +13,18 @@ router.post('/create', (req, res, next) => {
 
   userController.create(username, password)
     .then((user) => {
-      console.log(user);
-      res.status(200).json(user)
+      res.sendStatus(200);
+    })
+    .catch(next);
+});
+
+router.post('/authenticate', (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  userController.authenticate(username, password)
+    .then((user) => {
+      res.json(user);
     })
     .catch(next);
 });

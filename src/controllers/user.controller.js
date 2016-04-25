@@ -2,16 +2,39 @@ import config from '../config/config';
 import User from '../models/user.model';
 
 class UserController {
-  create(name, password) {
+  create(username, password) {
+    username = username.toLowerCase();
+    password = password.trim();
 
     let newUser = new User({
-      username: name,
+      username: username,
       password: password
     });
 
-    console.log(newUser);
-
     return newUser.saveAsync();
+  }
+
+  authenticate(username, password) {
+    if (!username || !password) {
+      //TODO: add error code
+      return next('Authentication failed. Username and password must be provided.');
+    }
+
+    return User.findOne({ username: { $regex: new RegExp(username, 'i') } })
+      .then(user => {
+        if (!user) {
+          return Promise.reject('Authentication failed. Username and password do not match.');
+        }
+        
+        return user.comparePassword(password);
+      })
+      .then(isValidPassword => {
+        if (!isValidPassword) {
+          return Promise.reject('Authentication failed. Username and password do not match.');
+        }
+
+        return Promise.resolve('OK');
+      });
   }
 }
 

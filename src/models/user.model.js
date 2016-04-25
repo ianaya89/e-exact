@@ -1,8 +1,8 @@
-import { genSaltAsync, hashAsync } from 'bcrypt';
+import { genSaltAsync, hashAsync, compareAsync } from 'bcrypt';
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
-const SALT_WORK_FACTOR = 10;
+const SALT_ROUNDS = 10;
 
 const UserSchema = new Schema({
   username: {
@@ -16,10 +16,14 @@ const UserSchema = new Schema({
   }
 });
 
+UserSchema.methods.comparePassword = function (password) {
+  return compareAsync(password, this.password);
+}
+
 UserSchema.pre('save', function(next) {
   if (this && !this.isModified('password')) { return next(); }
 
-  return genSaltAsync(SALT_WORK_FACTOR)
+  return genSaltAsync(SALT_ROUNDS)
     .then(salt => hashAsync(this.password, salt))
     .then(hash => {
       this.password = hash;
