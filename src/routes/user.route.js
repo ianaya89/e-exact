@@ -1,10 +1,10 @@
 import express from 'express';
 import userController from '../controllers/user.controller'
-import auth from '../middlewares/auth.middleware'
+import { validateUser } from '../middlewares/validator.middleware'
 
 const router = express.Router();
 
-router.post('/create', (req, res, next) => {
+router.post('/create', validateUser, (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
@@ -15,7 +15,7 @@ router.post('/create', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/authenticate', (req, res, next) => {
+router.post('/authenticate', validateUser, (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 

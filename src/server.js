@@ -11,6 +11,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import { promisifyAll } from 'bluebird';
 
 import middlewares from './middlewares/middleware'
+import err from './middlewares/err.middleware'
 import routes from './routes/route';
 
 const port = config.PORT;
@@ -23,8 +24,9 @@ promisifyAll(jsonwebtoken);
 mongoose.connect(config.MONGODB_URL);
 
 middlewares(app);
-routes(app)
+routes(app);
+err(app);
 
 app.listen(port, () => console.log(`Listenning on port ${port}`) );
 
-module.exports = app;
+export default app;
