@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha test/",
-    "build": "babel src -d lib",
+    "build": "babel src/ -d lib/",
     "dev": "nodemon --exec babel-node src/server.js",
-    "prestart": "babel src --out-dir lib",
+    "prestart": "babel src/ --out-dir lib/",
     "start": "node lib/server.js"
   },
   "repository": {
