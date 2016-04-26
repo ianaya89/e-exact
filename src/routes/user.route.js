@@ -26,4 +26,4 @@ router.post('/authenticate', validateUser, (req, res, next) => {
     .catch(next);
 });
 
-module.exports = router;
+export default router;

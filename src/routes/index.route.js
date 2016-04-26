@@ -10,4 +10,4 @@ router.get('/hello', (req, res, next) => {
   res.json('Hello world!');
 });
 
-module.exports = router;
+export default router;
