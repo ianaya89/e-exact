@@ -21,3 +21,13 @@ e-xact trainning REST API
 
 * Check in to a Github repo and provide the link to us
 
+
+# Run it
+1. Clone the repo
+
+2. Open a terminal and locate the repo directory.
+
+3. Run `$ npm i`
+
+4. Run `npm run dev`
+
