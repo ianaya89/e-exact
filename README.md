@@ -24,10 +24,7 @@ e-xact trainning REST API
 
 # Run it
 1. Clone the repo
-
 2. Open a terminal and locate the repo directory.
-
 3. Run `$ npm i`
-
-4. Run `npm run dev`
+4. Run `$ npm run dev`
 
