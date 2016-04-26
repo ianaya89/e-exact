@@ -18,14 +18,19 @@ class UserController {
 
   authenticate(username, password) {
     if (!username || !password) {
-      //TODO: add error code
-      return next('Authentication failed. Username and password must be provided.');
+      return Promise.reject({
+        status: 422,
+        message: 'Missing username/password parameters.'
+      });
     }
 
     return User.findOne({ username: { $regex: new RegExp(username, 'i') } })
       .then(user => {
         if (!user) {
-          return Promise.reject('Authentication failed. Username and password do not match.');
+          return Promise.reject({
+            status: 401,
+            message: 'Authentication failed. Username and password do not match.'
+          });
         }
         
         return user.comparePassword(password)

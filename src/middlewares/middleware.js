@@ -11,7 +11,7 @@ import logger from '../libs/logger.js';
 export default app => {
   app.set('json spaces', 2);
 
-  app.use(morgan('common', {
+  app.use(morgan('dev', {
     stream: {
       write: (message) => {
         logger.info(message);
