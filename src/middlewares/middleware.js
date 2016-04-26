@@ -7,6 +7,7 @@ import helmet from 'helmet';
 
 import config from '../config/config';
 import logger from '../libs/logger.libs';
+import auth from './auth.middleware'
 
 export default app => {
   app.set('json spaces', 2);
@@ -29,4 +30,6 @@ export default app => {
 
   app.use(compression());
   app.use(bodyParser.json());
+
+  app.all('*', auth);
 };

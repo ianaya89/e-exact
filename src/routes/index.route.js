@@ -1,9 +1,12 @@
 import express from 'express';
-import auth from '../middlewares/auth.middleware'
 
 const router = express.Router();
 
-router.get('/', auth, (req, res, next) => {
+router.get('/', (req, res, next) => {
+  res.json('Hello world!');
+});
+
+router.get('/hello', (req, res, next) => {
   res.json('Hello world!');
 });
 
