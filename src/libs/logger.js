@@ -13,6 +13,13 @@ module.exports = new winston.Logger({
       maxsize: 1048576,
       maxFiles: 10,
       colorize: false
+    }),
+    new winston.transports.Console({
+      name: 'console',
+      level: 'debug',
+      handleExceptions: true,
+      json: false,
+      colorize: true
     })
   ]
 });

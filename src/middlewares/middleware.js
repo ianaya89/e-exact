@@ -5,12 +5,12 @@ import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
 
-import config from './config/config';
+import config from '../config/config';
 import logger from '../libs/logger.js';
 
 module.exports = app => {
   app.set('json spaces', 2);
-  
+
   app.use(morgan('common', {
     stream: {
       write: (message) => {

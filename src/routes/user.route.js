@@ -4,10 +4,6 @@ import auth from '../middlewares/auth.middleware'
 
 const router = express.Router();
 
-router.get('/', auth, (req, res, next) => {
-  res.json('Hello world!');
-});
-
 router.post('/create', (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;

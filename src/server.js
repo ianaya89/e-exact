@@ -10,8 +10,8 @@ import jsonwebtoken from 'jsonwebtoken';
 
 import { promisifyAll } from 'bluebird';
 
-import middleware from './middlewares/middleware'
-import userRoute from './routes/user.route';
+import middlewares from './middlewares/middleware'
+import routes from './routes/route';
 
 const port = config.PORT;
 const app = express();
@@ -22,8 +22,8 @@ promisifyAll(jsonwebtoken);
 
 mongoose.connect(config.MONGODB_URL);
 
-middleware(app);
-app.use('/', userRoute);
+middlewares(app);
+routes(app)
 
 app.listen(port, () => console.log(`Listenning on port ${port}`) );
 
