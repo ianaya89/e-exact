@@ -2,8 +2,6 @@ import config from './config/config';
 
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import morgan from 'morgan';
 
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';

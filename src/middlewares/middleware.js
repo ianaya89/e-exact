@@ -6,7 +6,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 
 import config from '../config/config';
-import logger from '../libs/logger.js';
+import logger from '../libs/logger.libs';
 
 export default app => {
   app.set('json spaces', 2);
