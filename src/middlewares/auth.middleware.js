@@ -1,4 +1,5 @@
 import config from '../config/config';
+import { e401 } from '../libs/err.libs'
 import { verifyAsync } from 'jsonwebtoken';
 
 const nonSecurePaths = ['/create', '/authenticate'];
@@ -21,5 +22,5 @@ export default (req, res, next) => {
     req.decoded = decoded;
     next();
   })
-  .catch(err => next(err));
+  .catch(err => next(e401('Invalid token.')));
 };

@@ -5,7 +5,6 @@ import { validateUser } from '../middlewares/validator.middleware'
 const router = express.Router();
 
 router.post('/create', validateUser, (req, res, next) => {
-  console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
 
